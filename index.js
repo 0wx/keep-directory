@@ -44,7 +44,7 @@ app.get('/:language', async (req, res) => {
   let languagesList = await getLanguageList();
 
   let [news, dev, info, faq, blog] = await getArticle.all();
-  if(language.length > 2 || !require('../src/language.json')[language]) {
+  if(language.length > 2 || !require('./src/language.json')[language]) {
     res.render('404');
   }
   else if (language == 'en') {
@@ -68,7 +68,7 @@ app.get('/:language', async (req, res) => {
       lang: null,
       language: {
         code: language,
-        ...require('../src/language.json')[language],
+        ...require('./src/language.json')[language],
       },
       languagesList,
       tbtc: { news, dev, info, faq },
@@ -100,7 +100,7 @@ app.get('/:language', async (req, res) => {
       lang: null,
       language: {
         code: language,
-        ...require('../src/language.json')[language],
+        ...require('./src/language.json')[language],
       },
       languagesList,
       tbtc: { news, dev, info, faq },
