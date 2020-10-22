@@ -62,4 +62,9 @@ router.get('/:language', async (req, res) => {
   }
   res.render('index', data);
 });
+
+router.get('/test', (req, res) => {
+  let data = require('../src/sample.json');
+  res.render('index', data)
+})
 module.exports = router;
