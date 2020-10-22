@@ -1,66 +1,120 @@
 <!DOCTYPE html>
 head
   meta(name='viewport' content='width=device-width, initial-scale=1')
-  style.
-    ul, #myUL {
-    list-style-type: none;
-    }
-    #myUL {
-    margin: 0;
-    padding: 0;
-    }
-    .caret {
-    cursor: pointer;
-    -webkit-user-select: none; /* Safari 3.1+ */
-    -moz-user-select: none; /* Firefox 2+ */
-    -ms-user-select: none; /* IE 10+ */
-    user-select: none;
-    }
-    .caret::before {
-    content: "\25B6";
-    color: black;
-    display: inline-block;
-    margin-right: 6px;
-    }
-    .caret-down::before {
-    -ms-transform: rotate(90deg); /* IE 9 */
-    -webkit-transform: rotate(90deg); /* Safari */'
-    transform: rotate(90deg);
-    }
-    .nested {
-    display: none;
-    }
-    .active {
-    display: block;
-    }
-h2 Tree View
-p
-  | A tree view represents a hierarchical view of information, where each item can have a number of subitems.
-p Click on the arrow(s) to open or close the tree branches.
-ul#myUL
-  li
-    span.caret Beverages
-    ul.nested
-      li Water
-      li Coffee
-      li
-        span.caret Tea
-        ul.nested
-          li Black Tea
-          li White Tea
-          li
-            span.caret Green Tea
+  title=`KEEP Directory: ${language.native}`
+  link(rel="stylesheet", href="style.css")
+  link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,300&display=swap")
+.root
+  .head
+    .title
+      h2 KEEP Directory 
+      span=language.native
+
+    .select
+      select(name="lang" onchange="javascript:location.href = this.value;")
+        option(value=`/${language.code}` selected) Select language
+        each url in languagesList
+          option(value=`/${url.code}`)=`${url.code} - ${url.name}`
+  ul#myUL
+    li.main-column
+      span.caret.main 
+        .root-folder tBTC
+        .stat
+          div(class=`translate done ${Object.keys(tbtc).map(x => tbtc[x]).flat().filter(x => !!x.translate.length).length? '' : 'nodisplay'}`)=Object.keys(tbtc).map(x => tbtc[x]).flat().filter(x => !!x.translate.length).length
+          div(class=`translate notdone ${Object.keys(tbtc).map(x => tbtc[x]).flat().filter(x => !x.translate.length).length? '': 'nodisplay'}`)=Object.keys(tbtc).map(x => tbtc[x]).flat().filter(x => !x.translate.length).length
+      ul.nested
+        each child in ['News', 'Dev', 'Info', 'FaQ']
+          li.category
+            .caret.category
+              p=child
+              .stat
+                div(class=`translate done ${!!tbtc[child.toLowerCase()].filter(x => !!x.translate.length).length? '': 'nodisplay'}`).translate.done=tbtc[child.toLowerCase()].filter(x => !!x.translate.length).length
+                div(class=`translate notdone ${!!tbtc[child.toLowerCase()].filter(x => !x.translate.length).length? '' : 'nodisplay'}`).translate.notdone=tbtc[child.toLowerCase()].filter(x => !x.translate.length).length
             ul.nested
-              li Sencha
-              li Gyokuro
-              li Matcha
-              li Pi Lo Chun
-script.
-  var toggler = document.getElementsByClassName("caret");
-  var i;
-  for (i = 0; i < toggler.length; i++) {
-  toggler[i].addEventListener("click", function() {
-  this.parentElement.querySelector(".nested").classList.toggle("active");
-  this.classList.toggle("caret-down");
-  });
-  }
+              each url in tbtc[child.toLowerCase()]
+                li
+                  div(class=`caret url ${!!url.translate.length? 'done': 'notdone'}`)
+                    p=url.title
+                    a(href=url.url, target="_blank") view on website
+                  ul.nested
+                    each translate in url.translate
+                      li
+                        .link
+                          .header
+                            h4=translate.title
+                            .translator
+                              .profile
+                                a(href=`https://discordapp.com/channels/590951101600235531/701767679102550016/${translate.chat_id}`, target="_blank")
+                                  img(src=translate.avatarUrl, width="100%")
+                                  span=`${translate.name}#${translate.discriminator}`
+                                span=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(translate.timestamp).getMonth()]} ${new Date(translate.timestamp).getDate()}, ${new Date(translate.timestamp).getFullYear()}`
+                          p=translate.description
+                          span See more: 
+                            a(href=translate.url, target="_blank")=translate.url.split('//')[1].split('/')[0]
+
+
+    li.main-column
+      span.caret.main 
+        .root-folder KEEP
+        .stat
+          .translate.done=Object.keys(keep).map(x => keep[x]).flat().filter(x => !!x.translate.length).length
+          .translate.notdone=Object.keys(keep).map(x => keep[x]).flat().filter(x => !x.translate.length).length
+      ul.nested
+        each child in ['Blog']
+          li.category
+            .caret.category
+              p=child
+              .stat
+                div(class=`translate done ${!!keep[child.toLowerCase()].filter(x => !!x.translate.length).length? '': 'nodisplay'}`).translate.done=keep[child.toLowerCase()].filter(x => !!x.translate.length).length
+                div(class=`translate notdone ${!!keep[child.toLowerCase()].filter(x => !x.translate.length).length? '' : 'nodisplay'}`).translate.notdone=keep[child.toLowerCase()].filter(x => !x.translate.length).length
+            ul.nested
+              each url in keep[child.toLowerCase()]
+                li
+                  div(class=`caret url ${!!url.translate.length? 'done': 'notdone'}`)
+                    p=url.title
+                    a(href=url.url, target="_blank") view on website
+                  ul.nested
+                    each translate in url.translate
+                      li
+                        .link
+                          .header
+                            h4=translate.title
+                            .translator
+                              .profile
+                                a(href=`https://discordapp.com/channels/590951101600235531/701767679102550016/${translate.chat_id}`, target="_blank")
+                                  img(src=translate.avatarUrl, width="100%")
+                                  span=`${translate.name}#${translate.discriminator}`
+                                span=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(translate.timestamp).getMonth()]} ${new Date(translate.timestamp).getDate()}, ${new Date(translate.timestamp).getFullYear()}`
+                          p=translate.description
+                          span See more: 
+                            a(href=translate.url, target="_blank")=translate.url.split('//')[1].split('/')[0]
+
+    li.main-column
+      span.caret.main 
+        .root-folder Others
+        .stat
+          .translate.done=others.length
+      ul.nested
+        each translate in others
+          li
+            .link
+              .header
+                h4=translate.title
+                .translator
+                  .profile
+                    a(href=`https://discordapp.com/channels/590951101600235531/701767679102550016/${translate.chat_id}`, target="_blank")
+                      img(src=translate.avatarUrl, width="100%")
+                      span=`${translate.name}#${translate.discriminator}`
+                    span=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(translate.timestamp).getMonth()]} ${new Date(translate.timestamp).getDate()}, ${new Date(translate.timestamp).getFullYear()}`
+              p=translate.description
+              span See more: 
+                a(href=translate.url, target="_blank")=translate.url.split('//')[1].split('/')[0]
+
+    
+script(src="/main.js")
+.footer
+  .content
+    a(href="https://github.com/0wx/keep-directory") 
+      img(src="/github.png")
+      | 0wx/keep-directory
+  
