@@ -236,7 +236,7 @@ select {
   -moz-padding-end: 20px;
   -webkit-padding-start: 2px;
   -moz-padding-start: 2px;
-  background-color: #f07575; /* Fallback color if gradients are not supported */
+  background-color: #fff1f1; /* Fallback color if gradients are not supported */
   background-image: url(../images/select-arrow.png),
     -webkit-linear-gradient(top, #e5e5e5, #f4f4f4); /* For Chrome and Safari */
   background-image: url(../images/select-arrow.png),
