@@ -14,8 +14,7 @@ module.exports = async (req, res, next) => {
       };
       next();
     } else {
-      let { data } = await axios.get(endpoint + ip);
-	  console.log(data)
+      data = req;
       req.language = {
         code: countries[data.countryCode].languages[0],
         ...languages[countries[data.countryCode].languages[0]],
