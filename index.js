@@ -22,7 +22,7 @@ app.use(checkUrl);
 app.use(lang);
 
 app.set('view engine', 'pug');
-app.use(express.static('./public'));/
+app.use(express.static('./public'));
 app.use('/api', api)
 app.use('/newPost', newPost)
 
