@@ -111,7 +111,16 @@ head
                 a(href=translate.url, target="_blank")=translate.url.split('//')[1].split('/')[0]
 
     
-script(src="/script/main.js")
+script.
+	var toggler = document.getElementsByClassName("caret");
+	var i;
+
+	for (i = 0; i < toggler.length; i++) {
+	  toggler[i].addEventListener("click", function() {
+		this.parentElement.querySelector(".nested").classList.toggle("active");
+		this.classList.toggle("caret-down");
+	  });
+	}
 .footer
   .content
     a(href="https://github.com/0wx/keep-directory") 
