@@ -13,23 +13,47 @@ router.get('/', async (req, res) => {
   res.redirect(`/${code}`);
 });
 router.get('/:language', async (req, res) => {
+
   let data,
     { language } = req.params;
+
+  
   let languagesList = await getLanguageList();
+
   let [news, dev, info, faq, blog] = await getArticle.all();
-  if (language == 'en') {
+  if(language.length > 2 || !require('../src/language.json')[language]) {
+    res.render('404');
+  }
+  else if (language == 'en') {
     let others = await Submission.find({ translateFrom: 'en', other: true });
+    let translateAll = await Submission.find({ other: false });
+    let map = ({ url, title }) => ({
+      url,
+      title,
+      translate: translateAll
+        .filter((x) => x.matchUrl == url && !x.other)
+        .sort((a, b) => b.timestamp - a.timestamp),
+    });
+    news = news.map(map);
+    dev = dev.map(map);
+    info = info.map(map);
+    faq = faq.map(map);
+    blog = blog.map(map);
+
     data = {
-      noentry: req.query.noentry || false,
-      lang: req.query.lang || null,
-			language: req.language,
+      noentry: false,
+      lang: null,
+      language: {
+        code: language,
+        ...require('../src/language.json')[language],
+      },
       languagesList,
       tbtc: { news, dev, info, faq },
       keep: { blog },
-      others: others.sort((a, b) => b.timestamp - a.timestamp),
+      others,
     };
   } else {
-
+    let selectedLang = await Submission.find({ translateFrom: language });
 
     let map = ({ url, title }) => ({
       url,
@@ -37,10 +61,8 @@ router.get('/:language', async (req, res) => {
       translate: selectedLang
         .filter((x) => x.matchUrl == url && !x.other)
         .sort((a, b) => b.timestamp - a.timestamp),
-		});
-		
+    });
 
-    let selectedLang = await Submission.find({ translateFrom: language });
     news = news.map(map);
     dev = dev.map(map);
     info = info.map(map);
@@ -52,8 +74,11 @@ router.get('/:language', async (req, res) => {
       .sort((a, b) => b.timestamp - a.timestamp);
     data = {
       noentry: false,
-			lang: null,
-			language: req.language,
+      lang: null,
+      language: {
+        code: language,
+        ...require('../src/language.json')[language],
+      },
       languagesList,
       tbtc: { news, dev, info, faq },
       keep: { blog },
@@ -66,5 +91,5 @@ router.get('/:language', async (req, res) => {
 router.get('/test', (req, res) => {
   let data = require('../src/sample.json');
   res.render('index', data)
-})
+});
 module.exports = router;
