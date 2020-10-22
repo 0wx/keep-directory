@@ -21,6 +21,7 @@ app.use(expressGeoIP('US').getCountryCodeMiddleware);
 app.use(checkUrl);
 app.use(lang);
 
+app.use(express.json())
 app.set('view engine', 'pug');
 app.use(express.static('./public'));
 app.use('/api', api)
