@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/all', (req, res) => {
-  getArticle.all().then(res.json);
+  getArticle.all().then(data => res.json(data));
 });
 
 router.get('/update', (req, res) => {

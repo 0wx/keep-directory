@@ -20,6 +20,6 @@ app.use(expressGeoIP('US').getCountryCodeMiddleware);
 app.use(checkUrl);
 app.set('view engine', 'pug');
 app.use(express.static('./public'));
-app.use('/', index);
 app.use('/api', api)
 app.use('/newPost', newPost)
+app.use('/', index);
