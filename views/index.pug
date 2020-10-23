@@ -4,7 +4,6 @@ head
   title=`KEEP Directory: ${language.native}`
   link(rel="stylesheet", href="style.css")
   link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,300&display=swap")
-
 .root
   .head
     .title
@@ -112,7 +111,10 @@ head
                 a(href=translate.url, target="_blank")=translate.url.split('//')[1].split('/')[0]
 
     
-
+.footer
+  .content
+    | Made with ❤️ & ☕ by &nbsp
+    a(href="https://github.com/0wx/keep-directory") meh#9634
 script.
   var toggler = document.getElementsByClassName("caret");
   var i;
