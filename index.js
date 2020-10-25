@@ -5,9 +5,7 @@ const { getArticle, getLanguageList } = require('./lib');
 const express = require('express');
 const mongoose = require('mongoose');
 const expressGeoIP = require('express-geoip');
-const api = require('./routes/api');
-const newPost = require('./routes/newPost');
-const user = require('./routes/user');
+const { api, newPost, user } = require('./routes');
 const { lang, checkUrl } = require('./middlewares');
 const app = express();
 const config = {
@@ -25,9 +23,9 @@ app.use(lang);
 app.use(express.json())
 app.set('view engine', 'pug');
 app.use(express.static('./public'));
-app.use('/api', api)
-app.use('/user', user)
-app.use('/newPost', newPost)
+app.use('/api', api);
+app.use('/user', user);
+app.use('/newPost', newPost);
 
 app.get('/', async (req, res) => {
   let db = await Submission.find({}, { translateFrom: 1, _id: 0 });

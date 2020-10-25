@@ -269,6 +269,7 @@ select {
   margin-bottom: 20px;
   border-bottom: 1px solid grey;
   padding-bottom: 10px;
+  width: 97%;
 }
 .select {
   margin-left: 5px;
@@ -306,6 +307,7 @@ select {
 .main-info {
   margin: 10px 0;
 }
+
 @media screen and (max-width: 1024px) {
   .root {
     width: 80%;
