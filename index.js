@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const expressGeoIP = require('express-geoip');
 const api = require('./routes/api');
 const newPost = require('./routes/newPost');
+const user = require('./routes/user');
 const { lang, checkUrl } = require('./middlewares');
 const app = express();
 const config = {
@@ -25,6 +26,7 @@ app.use(express.json())
 app.set('view engine', 'pug');
 app.use(express.static('./public'));
 app.use('/api', api)
+app.use('/user', user)
 app.use('/newPost', newPost)
 
 app.get('/', async (req, res) => {
@@ -41,7 +43,7 @@ app.get('/:language', async (req, res) => {
   let data,
     { language } = req.params;
 
-  
+
   let languagesList = await getLanguageList();
 
   let [news, dev, info, faq, blog] = await getArticle.all();

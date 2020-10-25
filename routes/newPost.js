@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 router.post('/', async(req, res) => {
   if(req.headers['x-auth'] == process.env.BOT) {
 	  let response = await Submission.findOne({url: req.body.url});
-	  
+
 	  if(response) {
 		  res.status(200).json({ok: false, message: 'data exist'});
 	  } else {
@@ -19,6 +19,6 @@ router.post('/', async(req, res) => {
   } else {
 	res.status(403).json({ ok: false});
   }
-  
+
 });
 module.exports = router;

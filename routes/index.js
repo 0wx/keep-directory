@@ -17,7 +17,7 @@ router.get('/:language', async (req, res) => {
   let data,
     { language } = req.params;
 
-  
+
   let languagesList = await getLanguageList();
 
   let [news, dev, info, faq, blog] = await getArticle.all();

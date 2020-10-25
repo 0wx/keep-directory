@@ -226,6 +226,10 @@ img {
 .title {
   margin-left: 5px;
 }
+.title a{
+  text-decoration: none;
+  color: black;
+}
 
 select {
   -webkit-appearance: button;
@@ -299,6 +303,10 @@ select {
   text-decoration: none;
   color: grey;
 }
+
+.main-info {
+  margin: 10px 0;
+}
 @media screen and (max-width: 1024px) {
   .root {
     width: 80%;
@@ -315,6 +323,9 @@ select {
   .footer .content {
     width: 70%;
   }
+  .main-info {
+    font-size: 10px;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -322,6 +333,15 @@ select {
     width: 90%;
   }
   .footer .content {
+    width: 90%;
+  }
+  .main-info {
+    font-size: 10px;
+  }
+  .main-info td {
+    padding: 4px 1px;
+  }
+  .user-picture img {
     width: 90%;
   }
 }
