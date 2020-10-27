@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 head
   include includes/head.pug
+  meta(name='title' content=`KEEP Directory User: ${name}!`)
+  meta(name='description' content=`${name} contribute ${articles.length} articles so far! That is awesome, click here to see them all.`)
+  meta(property="og:image" content=avatarUrl)
   link(rel="stylesheet", href="/user.css")
   title=`KEEP Directory: ${name}`
 body
@@ -40,7 +43,7 @@ body
         .container
           .top
             .folder
-              a(href=`/${article.translateFrom}`)=article.other? `others > ${article.translateFrom}` : `${article.root} > ${article.child} > ${article.translateFrom}`
+              a(href=`/${article.translateFrom}`)=article.other? `${article.translateFrom} > others` : `${article.translateFrom} > ${article.root} > ${article.child}`
             .title-box
               span.title
                 a(target="_blank", href=article.url)=article.title
