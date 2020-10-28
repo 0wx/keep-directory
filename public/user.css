@@ -153,6 +153,9 @@ li.user-list-container a:hover{
   flex-direction: row;
   justify-content: space-between;
 }
+.user-list-stat.left-box p, h1 {
+  text-align: center;
+}
 
 li.user-list-container:hover {
   background-color: #48dbb4;
@@ -176,13 +179,7 @@ li.user-list-container:hover  .lang {
   margin-right: 20px;
 }
 
-center a {
-  text-decoration: none;
-  color: black;
-}
-center a:hover {
-  text-decoration: underline;
-}
+
 @media screen and (max-width: 1024px) {
   .container {
     width: 30%;

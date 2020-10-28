@@ -8,7 +8,23 @@
 li.main-column {
   margin: 15px 0;
 }
+.translator {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.external-url {
+  font-size: 10px;
+  margin: auto 0;
+}
 
+.external-url a {
+  text-decoration: none;
+  color: black;
+}
+.external-url a:hover {
+  text-decoration: underline;
+}
 .root {
   display: flex;
   flex-direction: column;
@@ -99,7 +115,7 @@ span.submain {
 }
 
 .done {
-  background-color: green;
+  background-color: #62C370;
 }
 .notdone {
   background-color: red;
@@ -149,20 +165,20 @@ span.submain {
   margin: 5px;
   border-radius: 7px;
   padding: 15px;
-  background-color: rgb(180, 255, 199);
+  background-color: #C2F9BB;
 }
 
 .link p {
   margin-bottom: 10px;
 }
 .header {
-  padding-bottom: 10px;
   margin-bottom: 10px;
-  border-bottom: 1px solid rgb(133, 133, 133);
 }
 .header h4 {
   font-size: 22px;
-  margin-bottom: 10px;
+}
+.desc {
+  margin-bottom: 25px;
 }
 
 .profile {
@@ -174,12 +190,13 @@ span.submain {
 
 .profile span {
   font-size: 10px;
+  font-weight: bold;
   text-decoration: none;
   margin: 0 5px;
 }
 .profile img {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
 }
 
@@ -282,7 +299,13 @@ select {
 .root {
   min-height: 92vh;
 }
-
+center a {
+  text-decoration: none;
+  color: black;
+}
+center a:hover {
+  text-decoration: underline;
+}
 .footer {
   text-align: center;
   background-color: rgb(63, 63, 63);
