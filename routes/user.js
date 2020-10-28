@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     }
   };
 
-  
+
   let response = cache.data.map((sub) => sub.toObject());
   let thisMonth = req.query.month || new Date().getMonth();
   let thisYear = req.query.year || new Date().getFullYear();
@@ -55,8 +55,8 @@ router.get('/', async (req, res) => {
 
     .filter(({ timestamp }) => {
       if (+req.query.month && +req.query.year) {
-        let before = +new Date(`${thisYear}-${thisMonth}-1`);
-        let after = +new Date(`${thisYear}-${+thisMonth + 1}-1`);
+        let before = +new Date(`${thisYear}-${+thisMonth + 1}-1`);
+        let after = +new Date(`${thisYear}-${+thisMonth + 2}-1`);
         return timestamp < after && timestamp > before;
       } else {
         return true;
