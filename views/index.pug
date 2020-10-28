@@ -44,6 +44,7 @@ head
                         .link
                           .header
                             h4=translate.title
+                            span=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(translate.timestamp).getMonth()]} ${new Date(translate.timestamp).getDate()}, ${new Date(translate.timestamp).getFullYear()}`
                           .desc
                             p=translate.description
                           .foot-article
@@ -52,7 +53,6 @@ head
                                 a(href=`/user/${translate.id}`)
                                   img(loading="lazy", src=translate.avatarUrl, width="100%")
                                   span=`${translate.name}#${translate.discriminator}`
-                                span=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(translate.timestamp).getMonth()]} ${new Date(translate.timestamp).getDate()}, ${new Date(translate.timestamp).getFullYear()}`
                               .external-url
                                 a(href=translate.url, target="_blank") Full Article ↗
 
@@ -83,6 +83,7 @@ head
                         .link
                           .header
                             h4=translate.title
+                            span=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(translate.timestamp).getMonth()]} ${new Date(translate.timestamp).getDate()}, ${new Date(translate.timestamp).getFullYear()}`
                           .desc
                             p=translate.description
                           .foot-article
@@ -91,7 +92,6 @@ head
                                 a(href=`/user/${translate.id}`)
                                   img(loading="lazy", src=translate.avatarUrl, width="100%")
                                   span=`${translate.name}#${translate.discriminator}`
-                                span=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(translate.timestamp).getMonth()]} ${new Date(translate.timestamp).getDate()}, ${new Date(translate.timestamp).getFullYear()}`
                               .external-url
                                 a(href=translate.url, target="_blank") Full Article ↗
 
@@ -106,6 +106,7 @@ head
             .link
               .header
                 h4=translate.title
+                span=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(translate.timestamp).getMonth()]} ${new Date(translate.timestamp).getDate()}, ${new Date(translate.timestamp).getFullYear()}`
               .desc
                 p=translate.description
               .foot-article
@@ -114,7 +115,6 @@ head
                     a(href=`/user/${translate.id}`)
                       img(loading="lazy", src=translate.avatarUrl, width="100%")
                       span=`${translate.name}#${translate.discriminator}`
-                    span=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(translate.timestamp).getMonth()]} ${new Date(translate.timestamp).getDate()}, ${new Date(translate.timestamp).getFullYear()}`
                   .external-url
                     a(href=translate.url, target="_blank") Full Article ↗
   center
