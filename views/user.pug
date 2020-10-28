@@ -14,31 +14,31 @@ body
           h2 KEEP Directory 
         span USER
     .user-info
-      .user-picture
-        img(src=avatarUrl, loading="lazy")
       .user-detail
-        .main-info
-          table
-            tr
-              td Discord Name
-              td :
-              td=name
-            tr
-              td Articles
-              td :
-              td=articles.length
-            tr
-              td First Submission
-              td :
-              td=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(articles.sort((a,b) => a.timestamp - b.timestamp)[0].timestamp).getMonth()]} ${new Date(articles.sort((a,b) => a.timestamp - b.timestamp)[0].timestamp).getDate()}, ${new Date(articles.sort((a,b) => a.timestamp - b.timestamp)[0].timestamp).getFullYear()}`
-            tr
-              td Latest Submission
-              td :
-              td=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(articles.sort((a,b) => b.timestamp - a.timestamp)[0].timestamp).getMonth()]} ${new Date(articles.sort((a,b) => b.timestamp - a.timestamp)[0].timestamp).getDate()}, ${new Date(articles.sort((a,b) => b.timestamp - a.timestamp)[0].timestamp).getFullYear()}`
-    .head
-      .title
-        h5 Articles
+        .left-info
+          .user-picture
+            img(src=avatarUrl, loading="lazy", width="100", height="100")
+          .user-date-info
+            .name
+              span.main=name.split('#')[0]
+                span.submain ##{name.split('#')[1]}
+            .submission
+              table
+                tr
+                  td First article
+                  td :
+                  td=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(articles.sort((a,b) => a.timestamp - b.timestamp)[0].timestamp).getMonth()]} ${new Date(articles.sort((a,b) => a.timestamp - b.timestamp)[0].timestamp).getDate()}, ${new Date(articles.sort((a,b) => a.timestamp - b.timestamp)[0].timestamp).getFullYear()}`
+                tr
+                  td Latest article
+                  td :
+                  td=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(articles.sort((a,b) => b.timestamp - a.timestamp)[0].timestamp).getMonth()]} ${new Date(articles.sort((a,b) => b.timestamp - a.timestamp)[0].timestamp).getDate()}, ${new Date(articles.sort((a,b) => b.timestamp - a.timestamp)[0].timestamp).getFullYear()}`
+        .right-info
+          p Articles:
+          h1=articles.length
+    .break
+      h5 Articles
     .articles
+
       each article in articles
         .container
           .top
@@ -50,7 +50,7 @@ body
               if !article.other
                 span.translatefrom Translated from:
                   a(target="_blank", href=article.matchUrl)=article.matchTitle
-            p=article.description
+            p.description=article.description
           .time
             span
               a(target="_blank", href=`https://discordapp.com/channels/590951101600235531/701767679102550016/${article.chat_id}`)=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(article.timestamp).getMonth()]} ${new Date(article.timestamp).getDate()}, ${new Date(article.timestamp).getFullYear()}`
