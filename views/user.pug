@@ -4,7 +4,7 @@ head
   meta(name='title' content=`KEEP Directory User: ${name}`)
   meta(name='description' content=`${name.split('#')[0]} contribute ${articles.length} articles so far! And that is awesome!`)
   meta(property="og:image" content=avatarUrl)
-  link(rel="stylesheet", href="/user.css")
+  link(rel="stylesheet", href=`/user.css?r=${Math.random()}`)
   title=`KEEP Directory: ${name}`
 body
   .root
