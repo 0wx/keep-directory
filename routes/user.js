@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     let data = await Submission.find();
     cache = {
       data,
-      time: Date.now() + 300000,
+      time: Date.now() + 30000,
     }
   };
 
