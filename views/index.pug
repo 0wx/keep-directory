@@ -2,8 +2,17 @@
 head
   include includes/head.pug
   meta(name='title' content=`KEEP Directory: ${language.native}`)
-  meta(name='description' content=`Directory list of KEEP and tBTC articles translated to ${language.native}!`)
-  meta(property="og:image" content="/K-mint-outline.png")
+  meta(name='description' content=`Directory list of KEEP and tBTC articles translated to ${language.native == 'English'? 'any language': language.native}!\nCreated by community for the community!`)
+  meta(property='og:type' content='website')
+  meta(property='og:url' content='https://keep.directory/en')
+  meta(property='og:title' content='KEEP Directory: English')
+  meta(property='og:description' content=`Directory list of KEEP and tBTC articles translated to ${language.native == 'English'? 'any language': language.native}!\nCreated by community for the community!`)
+  meta(property='og:image' content='/thumb.png')
+  meta(property='twitter:card' content='summary_large_image')
+  meta(property='twitter:title' content=`KEEP Directory: ${language.native}`)
+  meta(property='twitter:description' content=`Directory list of KEEP and tBTC articles translated to ${language.native == 'English'? 'any language': language.native}!\nCreated by community for the community!`)
+  meta(property='twitter:image' content='/thumb.png')
+
   title=`KEEP Directory: ${language.native}`
 .body
   .root
