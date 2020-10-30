@@ -10,6 +10,7 @@
 .user-info {
   display: flex;
   flex-direction: row;
+  padding-top: 10vh;
 }
 span.submain {
   color: grey;
@@ -197,6 +198,7 @@ li.user-list-container:hover  .lang {
   color: black;
 }
 .filter-box {
+  margin-top: 10vh;
   display: flex;
   justify-content: flex-end;
   padding: 5px;

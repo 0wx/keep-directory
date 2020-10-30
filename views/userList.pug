@@ -10,48 +10,61 @@ html(lang="en")
     link(rel="stylesheet", href=`/user.css?r=${Math.random()}`)
     title KEEP Directory: Statistics
   body
-    .root
-      .head
-        .title
-          a(href="/")
-            h2 KEEP Directory 
-          span Statistics
-      .filter-box
-        .by-date
-          .select
-            label(name="date") Filter by Date :
-            select(name="date" onchange="javascript:location.href = this.value;")
-              option(value=`/user` selected) All The Time
-              each date in filter.dateList
-                if date.month == filter.thisMonth && date.year == filter.thisYear
-                  option(value=`/user?month=${date.month}&year=${date.year}` selected)=date.monthText
-                else
-                  option(value=`/user?month=${date.month}&year=${date.year}`)=date.monthText
-        
-                  
-      ul.user-list-main-ul
-        each user in data
-          li.user-list-container
-            .user-list-info
-              .profile-pictures
-                img(src=user.avatarUrl, loading="lazy", alt=user.name, width="50", height="50")
-              .profile-info
-                h5
-                  a(href=`/user/${user.id}`)
-                    span=`${user.name}`
-                    span.discriminator=`#${user.discriminator}`
-                each lang in [...new Set(user.submissions.map((data) => data.translateFrom))]
-                  .lang-box
-                    .lang=lang
-                //- p=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(user.submissions.sort((a,b) => b.timestamp - a.timestamp)[0].timestamp).getMonth()]} ${new Date(user.submissions.sort((a,b) => b.timestamp - a.timestamp)[0].timestamp).getDate()}, ${new Date(user.submissions.sort((a,b) => b.timestamp - a.timestamp)[0].timestamp).getFullYear()}`
-            .user-list-stat
-              .left-box
-                p Total:
-                h1=user.submissions.length
-              .right-box
-                p=`tBTC: ${user.submissions.filter(({root, other}) => !other && root == 'tbtc').length}`
-                p=`KEEP: ${user.submissions.filter(({root, other}) => !other && root == 'keep').length}`
-                p=`others: ${user.submissions.filter(({other}) => other).length}`
+    .body
+      .root
+        .head
+          .title
+            a(href="/")
+              h2 KEEP Directory 
+            span Statistics
+          .nav-bar
+            .nav-box
+              ul.nav
+                li.statistics
+                  a(href=`/user?month=${new Date().getMonth()}&year=${new Date().getFullYear()}`) 📊 Stat
+                li.submit
+                  a(href="https://telegra.ph/How-to-start-translating-and-submit-your-translation-to-the-Play-for-Keeps-10-29") ✍️ Guide
+            .burger
+              .line1
+              .line2
+              .line3
+        .filter-box
+          .by-date
+            .select
+              label(name="date") Filter by Date :
+              select(name="date" onchange="javascript:location.href = this.value;")
+                option(value=`/user` selected) All The Time
+                each date in filter.dateList
+                  if date.month == filter.thisMonth && date.year == filter.thisYear
+                    option(value=`/user?month=${date.month}&year=${date.year}` selected)=date.monthText
+                  else
+                    option(value=`/user?month=${date.month}&year=${date.year}`)=date.monthText
+          
+                    
+        ul.user-list-main-ul
+          each user in data
+            li.user-list-container
+              .user-list-info
+                .profile-pictures
+                  img(src=user.avatarUrl, loading="lazy", alt=user.name, width="50", height="50")
+                .profile-info
+                  h5
+                    a(href=`/user/${user.id}`)
+                      span=`${user.name}`
+                      span.discriminator=`#${user.discriminator}`
+                  each lang in [...new Set(user.submissions.map((data) => data.translateFrom))]
+                    .lang-box
+                      .lang=lang
+                  //- p=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(user.submissions.sort((a,b) => b.timestamp - a.timestamp)[0].timestamp).getMonth()]} ${new Date(user.submissions.sort((a,b) => b.timestamp - a.timestamp)[0].timestamp).getDate()}, ${new Date(user.submissions.sort((a,b) => b.timestamp - a.timestamp)[0].timestamp).getFullYear()}`
+              .user-list-stat
+                .left-box
+                  p Total:
+                  h1=user.submissions.length
+                .right-box
+                  p=`tBTC: ${user.submissions.filter(({root, other}) => !other && root == 'tbtc').length}`
+                  p=`KEEP: ${user.submissions.filter(({root, other}) => !other && root == 'keep').length}`
+                  p=`others: ${user.submissions.filter(({other}) => other).length}`
 
 
-    include includes/footer.pug
+      include includes/footer.pug
+    script(src="/script.js", type="text/javascript")

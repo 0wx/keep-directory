@@ -13,6 +13,17 @@ body
         a(href="/")
           h2 KEEP Directory 
         span USER
+      .nav-bar
+        .nav-box
+          ul.nav
+            li.statistics
+              a(href=`/user?month=${new Date().getMonth()}&year=${new Date().getFullYear()}`) 📊 Stat
+            li.submit
+              a(href="https://telegra.ph/How-to-start-translating-and-submit-your-translation-to-the-Play-for-Keeps-10-29") ✍️ Guide
+        .burger
+          .line1
+          .line2
+          .line3
     .user-info
       .user-detail
         .left-info
@@ -57,3 +68,4 @@ body
             span
               a(target="_blank", href=article.url) view full article ↗
   include includes/footer.pug
+  script(src="/script.js", type="text/javascript")

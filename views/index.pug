@@ -5,130 +5,132 @@ head
   meta(name='description' content=`Directory list of KEEP and tBTC articles translated to ${language.native}!`)
   meta(property="og:image" content="/K-mint-outline.png")
   title=`KEEP Directory: ${language.native}`
-.root
-  .head
-    .title
-      a(href="/")
-        h2 KEEP Directory 
-      span=language.native
+.body
+  .root
+    .head
+      .title
+        a(href="/")
+          h2 KEEP Directory 
+        span=language.native
+      .nav-bar
+        .nav-box
+          ul.nav
+            li.statistics
+              a(href=`/user?month=${new Date().getMonth()}&year=${new Date().getFullYear()}`) 📊 Stat
+            li.submit
+              a(href="https://telegra.ph/How-to-start-translating-and-submit-your-translation-to-the-Play-for-Keeps-10-29") ✍️ Guide
+        .burger
+          .line1
+          .line2
+          .line3
 
-    .select
-      select(name="lang" onchange="javascript:location.href = this.value;")
-        option(value=`/${language.code}` selected) Select language
-        each url in languagesList
-          option(value=`/${url.code}`)=`${url.code} - ${url.name}`
-  ul#myUL
-    li.main-column
-      span.caret.main 
-        .root-folder tBTC
-        .stat
-          div(class=`translate done ${Object.keys(tbtc).map(x => tbtc[x]).flat().filter(x => !!x.translate.length).length? '' : 'nodisplay'}`)=Object.keys(tbtc).map(x => tbtc[x]).flat().filter(x => !!x.translate.length).length
-          div(class=`translate notdone ${Object.keys(tbtc).map(x => tbtc[x]).flat().filter(x => !x.translate.length).length? '': 'nodisplay'}`)=Object.keys(tbtc).map(x => tbtc[x]).flat().filter(x => !x.translate.length).length
-      ul.nested
-        each child in ['News', 'Dev', 'Info', 'FaQ']
-          li.category
-            .caret.category
-              p=child
-              .stat
-                div(class=`translate done ${!!tbtc[child.toLowerCase()].filter(x => !!x.translate.length).length? '': 'nodisplay'}`).translate.done=tbtc[child.toLowerCase()].filter(x => !!x.translate.length).length
-                div(class=`translate notdone ${!!tbtc[child.toLowerCase()].filter(x => !x.translate.length).length? '' : 'nodisplay'}`).translate.notdone=tbtc[child.toLowerCase()].filter(x => !x.translate.length).length
-            ul.nested
-              each url in tbtc[child.toLowerCase()]
-                li
-                  div(class=`caret url ${!!url.translate.length? 'done': 'notdone'}`)
-                    p=url.title
-                    a(href=url.url, target="_blank") view on website
-                  ul.nested
-                    each translate in url.translate
-                      li
-                        .link
-                          .header
-                            h4=translate.title
-                            span=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(translate.timestamp).getMonth()]} ${new Date(translate.timestamp).getDate()}, ${new Date(translate.timestamp).getFullYear()}`
-                          .desc
-                            p=translate.description
-                          .foot-article
-                            .translator
-                              .profile
-                                a(href=`/user/${translate.id}`)
-                                  img(loading="lazy", src=translate.avatarUrl, width="100%")
-                                  span=`${translate.name}#${translate.discriminator}`
-                              .external-url
-                                a(href=translate.url, target="_blank") Full Article ↗
+    .article-body
+      .select
+        select(name="lang" onchange="javascript:location.href = this.value;")
+          option(value=`/${language.code}` selected) Select language
+          each url in languagesList
+            option(value=`/${url.code}`)=`${url.code} - ${url.name}`
+      ul#myUL
+        li.main-column
+          span.caret.main 
+            .root-folder tBTC
+            .stat
+              div(class=`translate done ${Object.keys(tbtc).map(x => tbtc[x]).flat().filter(x => !!x.translate.length).length? '' : 'nodisplay'}`)=Object.keys(tbtc).map(x => tbtc[x]).flat().filter(x => !!x.translate.length).length
+              div(class=`translate notdone ${Object.keys(tbtc).map(x => tbtc[x]).flat().filter(x => !x.translate.length).length? '': 'nodisplay'}`)=Object.keys(tbtc).map(x => tbtc[x]).flat().filter(x => !x.translate.length).length
+          ul.nested
+            each child in ['News', 'Dev', 'Info', 'FaQ']
+              li.category
+                .caret.category
+                  p=child
+                  .stat
+                    div(class=`translate done ${!!tbtc[child.toLowerCase()].filter(x => !!x.translate.length).length? '': 'nodisplay'}`).translate.done=tbtc[child.toLowerCase()].filter(x => !!x.translate.length).length
+                    div(class=`translate notdone ${!!tbtc[child.toLowerCase()].filter(x => !x.translate.length).length? '' : 'nodisplay'}`).translate.notdone=tbtc[child.toLowerCase()].filter(x => !x.translate.length).length
+                ul.nested
+                  each url in tbtc[child.toLowerCase()]
+                    li
+                      div(class=`caret url ${!!url.translate.length? 'done': 'notdone'}`)
+                        p=url.title
+                        a(href=url.url, target="_blank") view on website
+                      ul.nested
+                        each translate in url.translate
+                          li
+                            .link
+                              .header
+                                h4=translate.title
+                                span=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(translate.timestamp).getMonth()]} ${new Date(translate.timestamp).getDate()}, ${new Date(translate.timestamp).getFullYear()}`
+                              .desc
+                                p=translate.description
+                              .foot-article
+                                .translator
+                                  .profile
+                                    a(href=`/user/${translate.id}`)
+                                      img(loading="lazy", src=translate.avatarUrl, width="100%")
+                                      span=`${translate.name}#${translate.discriminator}`
+                                  .external-url
+                                    a(href=translate.url, target="_blank") Full Article ↗
 
 
-    li.main-column
-      span.caret.main 
-        .root-folder KEEP
-        .stat
-          .translate.done=Object.keys(keep).map(x => keep[x]).flat().filter(x => !!x.translate.length).length
-          .translate.notdone=Object.keys(keep).map(x => keep[x]).flat().filter(x => !x.translate.length).length
-      ul.nested
-        each child in ['Blog']
-          li.category
-            .caret.category
-              p=child
-              .stat
-                div(class=`translate done ${!!keep[child.toLowerCase()].filter(x => !!x.translate.length).length? '': 'nodisplay'}`).translate.done=keep[child.toLowerCase()].filter(x => !!x.translate.length).length
-                div(class=`translate notdone ${!!keep[child.toLowerCase()].filter(x => !x.translate.length).length? '' : 'nodisplay'}`).translate.notdone=keep[child.toLowerCase()].filter(x => !x.translate.length).length
-            ul.nested
-              each url in keep[child.toLowerCase()]
-                li
-                  div(class=`caret url ${!!url.translate.length? 'done': 'notdone'}`)
-                    p=url.title
-                    a(href=url.url, target="_blank") view on website
-                  ul.nested
-                    each translate in url.translate
-                      li
-                        .link
-                          .header
-                            h4=translate.title
-                            span=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(translate.timestamp).getMonth()]} ${new Date(translate.timestamp).getDate()}, ${new Date(translate.timestamp).getFullYear()}`
-                          .desc
-                            p=translate.description
-                          .foot-article
-                            .translator
-                              .profile
-                                a(href=`/user/${translate.id}`)
-                                  img(loading="lazy", src=translate.avatarUrl, width="100%")
-                                  span=`${translate.name}#${translate.discriminator}`
-                              .external-url
-                                a(href=translate.url, target="_blank") Full Article ↗
+        li.main-column
+          span.caret.main 
+            .root-folder KEEP
+            .stat
+              .translate.done=Object.keys(keep).map(x => keep[x]).flat().filter(x => !!x.translate.length).length
+              .translate.notdone=Object.keys(keep).map(x => keep[x]).flat().filter(x => !x.translate.length).length
+          ul.nested
+            each child in ['Blog']
+              li.category
+                .caret.category
+                  p=child
+                  .stat
+                    div(class=`translate done ${!!keep[child.toLowerCase()].filter(x => !!x.translate.length).length? '': 'nodisplay'}`).translate.done=keep[child.toLowerCase()].filter(x => !!x.translate.length).length
+                    div(class=`translate notdone ${!!keep[child.toLowerCase()].filter(x => !x.translate.length).length? '' : 'nodisplay'}`).translate.notdone=keep[child.toLowerCase()].filter(x => !x.translate.length).length
+                ul.nested
+                  each url in keep[child.toLowerCase()]
+                    li
+                      div(class=`caret url ${!!url.translate.length? 'done': 'notdone'}`)
+                        p=url.title
+                        a(href=url.url, target="_blank") view on website
+                      ul.nested
+                        each translate in url.translate
+                          li
+                            .link
+                              .header
+                                h4=translate.title
+                                span=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(translate.timestamp).getMonth()]} ${new Date(translate.timestamp).getDate()}, ${new Date(translate.timestamp).getFullYear()}`
+                              .desc
+                                p=translate.description
+                              .foot-article
+                                .translator
+                                  .profile
+                                    a(href=`/user/${translate.id}`)
+                                      img(loading="lazy", src=translate.avatarUrl, width="100%")
+                                      span=`${translate.name}#${translate.discriminator}`
+                                  .external-url
+                                    a(href=translate.url, target="_blank") Full Article ↗
 
-    li.main-column
-      span.caret.main 
-        .root-folder Others
-        .stat
-          .translate.done=others.length
-      ul.nested
-        each translate in others
-          li
-            .link
-              .header
-                h4=translate.title
-                span=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(translate.timestamp).getMonth()]} ${new Date(translate.timestamp).getDate()}, ${new Date(translate.timestamp).getFullYear()}`
-              .desc
-                p=translate.description
-              .foot-article
-                .translator
-                  .profile
-                    a(href=`/user/${translate.id}`)
-                      img(loading="lazy", src=translate.avatarUrl, width="100%")
-                      span=`${translate.name}#${translate.discriminator}`
-                  .external-url
-                    a(href=translate.url, target="_blank") Full Article ↗
-  center
-    a(href=`/user?month=${new Date().getMonth()}&year=${new Date().getFullYear()}`) 📊 Users Statistics
-  center
-    a(href="https://telegra.ph/How-to-start-translating-and-submit-your-translation-to-the-Play-for-Keeps-10-29") ✍️ Submit Translation
-    
-include includes/footer.pug
-script.
-  var toggler = document.getElementsByClassName("caret");
-  var i;
-  for (i = 0; i < toggler.length; i++) {
-  toggler[i].addEventListener("click", function() {
-  this.parentElement.querySelector(".nested").classList.toggle("active");
-  this.classList.toggle("caret-down");
-  });
-  }
+        li.main-column
+          span.caret.main 
+            .root-folder Others
+            .stat
+              .translate.done=others.length
+          ul.nested
+            each translate in others
+              li
+                .link
+                  .header
+                    h4=translate.title
+                    span=`${["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][new Date(translate.timestamp).getMonth()]} ${new Date(translate.timestamp).getDate()}, ${new Date(translate.timestamp).getFullYear()}`
+                  .desc
+                    p=translate.description
+                  .foot-article
+                    .translator
+                      .profile
+                        a(href=`/user/${translate.id}`)
+                          img(loading="lazy", src=translate.avatarUrl, width="100%")
+                          span=`${translate.name}#${translate.discriminator}`
+                      .external-url
+                        a(href=translate.url, target="_blank") Full Article ↗
+
+      
+  include includes/footer.pug
+script(src="/script.js", type="text/javascript")
