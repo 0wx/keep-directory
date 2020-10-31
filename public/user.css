@@ -10,7 +10,7 @@
 .user-info {
   display: flex;
   flex-direction: row;
-  padding-top: 10vh;
+  padding-top: 90px;
 }
 span.submain {
   color: grey;

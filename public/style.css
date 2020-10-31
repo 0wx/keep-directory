@@ -295,9 +295,10 @@ select {
   white-space: nowrap;
 }
 .head {
+  padding-left: 6px;
   position: fixed;
   top: 0;
-  height: 8vh;
+  height: 70px;
   display: flex;
   flex-direction: row;
   width: 70%;
@@ -314,7 +315,7 @@ select {
   justify-content: space-around;
 }
 .article-body {
-  margin-top: 10vh;
+  margin-top: 80px;;
 }
 .nav-bar {
   width: 30%;
