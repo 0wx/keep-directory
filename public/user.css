@@ -198,7 +198,7 @@ li.user-list-container:hover  .lang {
   color: black;
 }
 .filter-box {
-  margin-top: 10vh;
+  margin-top: 75px;
   display: flex;
   justify-content: flex-end;
   padding: 5px;
