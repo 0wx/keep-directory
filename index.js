@@ -13,7 +13,7 @@ const config = {
   useUnifiedTopology: true,
 };
 
-mongoose.connect(process.env.MONGODB, config);
+mongoose.connect(process.env.MONGODB, config, () => console.log('connected'));
 app.listen(process.env.PORT || 5000);
 
 app.use(expressGeoIP('US').getCountryCodeMiddleware);

@@ -56,7 +56,7 @@ router.get('/', async (req, res) => {
     .filter(({ timestamp }) => {
       if (+req.query.month && +req.query.year) {
         let before = +new Date(`${thisYear}-${+thisMonth + 1}-1`);
-        let after = +new Date(`${thisYear}-${+thisMonth + 2}-1`);
+        let after = +new Date(`${(+thisMonth + 2) > 12 ? thisYear+1 : thisYear}-${(+thisMonth + 2) > 12 ? 1 : (+thisMonth + 2)}-1`);
         return timestamp < after && timestamp > before;
       } else {
         return true;
