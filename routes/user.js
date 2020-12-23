@@ -116,9 +116,10 @@ router.get('/:id', async (req, res) => {
   if (!response.length) {
     res.render('404');
   } else {
+    const latest = response.length-1;
     let data = {
-      name: `${response[0].name}#${response[0].discriminator}`,
-      avatarUrl: response[0].avatarUrl,
+      name: `${response[latest].name}#${response[latest].discriminator}`,
+      avatarUrl: response[latest].avatarUrl,
       articles: response,
     };
     res.render('user', data);
